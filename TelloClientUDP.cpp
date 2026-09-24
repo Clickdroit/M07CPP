@@ -4,8 +4,8 @@
 
 #include "TelloClientUDP.h"
 
-TelloClientUDP::TelloClientUDP() {
-    client.OuvrirLaSocketDeCommunication("127.0.0.1", 8889);
+TelloClientUDP::TelloClientUDP(string IP) {
+    client.OuvrirLaSocketDeCommunication(IP, 8889);
 }
 
 string TelloClientUDP::EnvoyerCommande(string commande) {
@@ -13,7 +13,7 @@ string TelloClientUDP::EnvoyerCommande(string commande) {
         return "";
     }
     string reponse;
-    int nbOctets = client.RecevoirUnMessage(reponse, 500);
+    int nbOctets = client.RecevoirUnMessage(reponse, 50000);
     if (nbOctets > 0) {
         return reponse;
     }
@@ -53,4 +53,7 @@ string TelloClientUDP::TournerHoraire(int deg) {
 }
 string TelloClientUDP::TournerTrigo(int deg) {
     return EnvoyerCommande("ccw " + to_string(deg));
+}
+string TelloClientUDP::go(int x, int y, int z, int speed) {
+    return EnvoyerCommande("go " + to_string(x) + " " + to_string(y) + " " + to_string(z) + " " + to_string(speed));
 }
