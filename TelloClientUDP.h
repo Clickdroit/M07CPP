@@ -12,7 +12,7 @@ class TelloClientUDP {
     private:
         IRClientUDP client;
     public:
-        TelloClientUDP();
+        explicit TelloClientUDP(string IP);
         string EnvoyerCommande(string commande);
         string ModeCommande();
         string Decoller();
@@ -25,6 +25,8 @@ class TelloClientUDP {
         string Arriere(int cm);
         string TournerHoraire(int deg);
         string TournerTrigo(int deg);
+        string go(int x, int y, int z, int speed);
+
 };
 
 
