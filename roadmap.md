@@ -77,15 +77,15 @@ Présentation de la conversion des données de vol en JSON.
 
 ## Pages 12–13 — SS04 : convertir une trame en JSON
 
-- [ ] Relever les prototypes des méthodes de `string` pour rechercher, remplacer, insérer et effacer des caractères.
-- [ ] Supprimer `\r` et `\n` de la trame et afficher sa longueur avant et après pour vérifier.
-- [ ] Ajouter l'accolade ouvrante et le guillemet de début.
-- [ ] Remplacer les séparateurs `:` pour entourer les clés et les valeurs de guillemets.
-- [ ] Transformer les `;` intermédiaires en séparateurs entre les champs JSON.
-- [ ] Traiter le dernier `;` pour fermer la dernière valeur et l'objet JSON sans virgule finale.
-- [ ] Produire un objet JSON compact contenant les 16 champs, avec les valeurs sous forme de chaînes comme dans le sujet.
+- [x] Relever les prototypes des méthodes de `string` pour rechercher, remplacer, insérer et effacer des caractères.
+- [x] Supprimer `\r` et `\n` de la trame et afficher sa longueur avant et après pour vérifier.
+- [x] Ajouter l'accolade ouvrante et le guillemet de début.
+- [x] Remplacer les séparateurs `:` pour entourer les clés et les valeurs de guillemets.
+- [x] Transformer les `;` intermédiaires en séparateurs entre les champs JSON.
+- [x] Traiter le dernier `;` pour fermer la dernière valeur et l'objet JSON sans virgule finale.
+- [x] Produire un objet JSON compact contenant les 16 champs, avec les valeurs sous forme de chaînes comme dans le sujet.
 - [ ] Tester la conversion avec les données du simulateur.
-- [ ] Ajouter la trame convertie en JSON au fichier LOG dans la boucle de réception.
+- [x] Ajouter la trame convertie en JSON au fichier LOG dans la boucle de réception.
 - [ ] **Bonus :** afficher chaque caractère de la trame en hexadécimal.
 
 ## Page 14 — Objectifs de la séance SS05
@@ -165,5 +165,4 @@ Présentation du client REST écrit en C++.
 ## Prochaine étape
 
 Valider le programme actuel dans CLion et dans le simulateur, vérifier le délai de réponse et sauvegarder une capture des commandes. Ensuite, commencer le serveur de réception des données de vol des pages 8–10. Le menu de la page 6 reste un bonus.
-
 

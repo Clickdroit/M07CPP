@@ -37,6 +37,62 @@ bool ExtraireDonneesVol(const string& message, DonneesVol& donnees) {
     return champsLus == 16;
 }
 
+string ConvertirEnJSON(string message) {
+    int longueurAvant = message.length();
+
+    while (message.find('\r') != string::npos) {
+        message.erase(message.find('\r'), 1);
+    }
+    while (message.find('\n') != string::npos) {
+        message.erase(message.find('\n'), 1);
+    }
+
+    cout << "long avant : " << longueurAvant << endl;
+    cout << "long apres : " << message.length() << endl;
+
+    string json = "{";
+    int positionDebut = 0;
+    int positionFin = message.find(';');
+    bool premierChamp = true;
+
+    while (positionFin != string::npos) {
+        string champ = message.substr(positionDebut, positionFin - positionDebut);
+        int positionDeuxPoints = champ.find(':');
+
+        if (positionDeuxPoints != string::npos) {
+            string cle = champ.substr(0, positionDeuxPoints);
+            string valeur = champ.substr(positionDeuxPoints + 1);
+
+            if (!premierChamp) {
+                json += ",";
+            }
+            json += "\"" + cle + "\":\"" + valeur + "\"";
+            premierChamp = false;
+        }
+
+        positionDebut = positionFin + 1;
+        positionFin = message.find(';', positionDebut);
+    }
+
+    if (positionDebut < message.length()) {
+        string champ = message.substr(positionDebut);
+        int positionDeuxPoints = champ.find(':');
+
+        if (positionDeuxPoints != string::npos) {
+            string cle = champ.substr(0, positionDeuxPoints);
+            string valeur = champ.substr(positionDeuxPoints + 1);
+
+            if (!premierChamp) {
+                json += ",";
+            }
+            json += "\"" + cle + "\":\"" + valeur + "\"";
+        }
+    }
+
+    json += "}";
+    return json;
+}
+
 void AfficherDonneesVol(const DonneesVol& d) {
     cout << "Donnees extraites :\n"
          << "  pitch=" << d.pitch << ", roll=" << d.roll << ", yaw=" << d.yaw << '\n'
@@ -71,7 +127,10 @@ int main()
         } else {
             cout << "Trame recue, mais son format ne correspond pas aux 16 champs attendus." << endl;
         }
+        string json = ConvertirEnJSON(message);
+        cout << "JSON : " << json << endl;
         fichier << message << endl;
+        fichier << json << endl;
         octets = serveur.RecevoirUnMessage(message, 30000000);
     }
     if (octets < 0){
