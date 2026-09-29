@@ -61,15 +61,15 @@ Présentation de la réception des données de vol et du fichier LOG.
 - [x] Capturer un décollage et un atterrissage avec Wireshark, puis sauvegarder en `.pcapng`.
 - [x] Identifier une trame de données de vol et relever son contenu exact, y compris `\r` et `\n`.
 - [x] Expliquer les champs `pitch`, `roll`, `yaw`, `vgx`, `vgy`, `vgz`, `templ`, `temph`, `tof`, `h`, `bat`, `baro`, `time`, `agx`, `agy` et `agz`.
-- [ ] Utiliser `IRServeurUDP` dans un programme de réception des données de vol.
-- [ ] Ouvrir la socket d'écoute sur `0.0.0.0` et sur le port des données de vol identifié dans la documentation ou la capture.
-- [ ] Recevoir et afficher les données dans une boucle ; sortir quand le nombre d'octets reçus n'est plus strictement positif.
-- [ ] Identifier la classe C++ d'écriture de fichiers (`ofstream`) et ouvrir `serveur.log`.
-- [ ] Enregistrer toutes les trames reçues dans `serveur.log`.
-- [ ] Tester réception, affichage et sauvegarde avec le simulateur.
-- [ ] **Bonus :** déclarer une structure C contenant les données de vol et extraire les champs avec `sscanf`.
+- [x] Utiliser `IRServeurUDP` dans un programme de réception des données de vol.
+- [x] Ouvrir la socket d'écoute sur `0.0.0.0` et sur le port des données de vol identifié dans la documentation ou la capture.
+- [x] Recevoir et afficher les données dans une boucle ; sortir quand le nombre d'octets reçus n'est plus strictement positif.
+- [x] Identifier la classe C++ d'écriture de fichiers (`ofstream`) et ouvrir `serveur.log`.
+- [x] Enregistrer toutes les trames reçues dans `serveur.log`.
+- [x] Tester réception, affichage et sauvegarde avec le simulateur.
+- [x] **Bonus :** déclarer une structure C contenant les données de vol et extraire les champs avec `sscanf`.
 
-`IRServeurUDP.h/.cpp` sont présents, mais le programme actuel n'utilise pas cette classe pour recevoir la télémétrie. Les réponses aux commandes reçues par `IRClientUDP` ne valident pas cette partie.
+Le code de `ServeurUDP/main.cpp` utilise maintenant `IRServeurUDP` sur `0.0.0.0:8890`, affiche les trames reçues et les ajoute à `serveur.log`. Le test avec le simulateur reste à confirmer.
 
 ## Page 11 — Objectifs de la séance SS04
 
@@ -165,3 +165,5 @@ Présentation du client REST écrit en C++.
 ## Prochaine étape
 
 Valider le programme actuel dans CLion et dans le simulateur, vérifier le délai de réponse et sauvegarder une capture des commandes. Ensuite, commencer le serveur de réception des données de vol des pages 8–10. Le menu de la page 6 reste un bonus.
+
+
